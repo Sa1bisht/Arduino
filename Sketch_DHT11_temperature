@@ -1,0 +1,25 @@
+#include<DHT.h>
+#define Type DHT11
+int sensePin = 2;
+DHT HT(sensePin, Type);
+float tempC;
+float tempF;
+float humidity;
+int dt = 500;
+int senseT = 1000;
+void setup(){
+  pinMode(sensePin, INPUT);
+  HT.begin();
+  Serial.begin(9600);
+}
+void loop(){
+  humidity = HT.readHumidity();
+  tempC = HT.readTemperature();
+  tempF = HT.readTemperature(true);
+  Serial.print("Humidity ");
+  Serial.println(humidity);
+  Serial.print("TempC ");
+  Serial.println(tempC);
+  Serial.print("TempF ");
+  Serial.println(tempF);
+}
